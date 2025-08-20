@@ -1,0 +1,533 @@
+/* ==============================
+   VARIABLES & BASE
+   ============================== */
+:root {
+  --bg: #1e1f22;
+  --text: #f2f3f5;
+  --muted: #b5bac1;
+  --accent: #5865f2;
+  --accent-dark: #404eed;
+  --icon-color: #a0a0a0;
+  --icon-hover: #ffffff;
+  --surface: rgba(255, 255, 255, 0.02);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.6;
+  padding: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+h1 {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 40px 0 12px;
+  padding-bottom: 4px;
+  font-size: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+p {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+/* ==============================
+   SOCIAL ICONS
+   ============================== */
+.social-icons {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.social-icons a {
+  font-size: 1.6rem;
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--icon-hover);
+  transform: scale(1.2);
+}
+
+/* ==============================
+   HEADER & PROFILE
+   ============================== */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-wrapper-notes {
+  --size: 180px;
+  position: relative;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  outline: none;
+}
+
+.profile-pic-notes {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid #dbdbdb;
+  border-radius: 50%;
+}
+
+.status-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 23px;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent) 0%, var(--accent-dark) 70%);
+  box-shadow: 0 0 6px rgba(0, 234, 255, 0.8),
+              0 0 12px rgba(0, 119, 255, 0.7);
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+.note-bubble {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: 'Work Sans', sans-serif;
+  color: #000;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px) scale(0.85);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-wrapper-notes:hover .note-bubble,
+.profile-wrapper-notes:focus-visible .note-bubble {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  animation: verseFloat 3s ease-in-out infinite 0.3s;
+}
+
+@keyframes badgeGlow {
+  50% {
+    box-shadow: 0 0 10px var(--accent),
+                0 0 20px var(--accent-dark);
+  }
+}
+
+@keyframes verseFloat {
+  50% {
+    transform: translate(-50%, -3px) scale(1);
+  }
+}
+
+/* ==============================
+   EDUCATION SECTION
+   ============================== */
+.edu-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.edu-logo {
+  width: 50px;
+  transition: transform 0.3s ease;
+}
+
+.grad-hat {
+  position: absolute;
+  top: -15px;
+  left: -8px;
+  width: 35px;
+  opacity: 0;
+  transform: scale(0) rotate(-10deg);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.logo-container:hover .edu-logo {
+  transform: scale(1.05);
+}
+
+.logo-container:hover .grad-hat {
+  opacity: 1;
+  transform: scale(1) rotate(-30deg);
+}
+
+/* ==============================
+   SKILLS SECTION
+   ============================== */
+.skills-section {
+  margin: 28px 0;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.skills-column {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 8px;
+}
+
+.skill-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.skill-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.skill-inner-fill {
+  width: 0;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.skill-percent {
+  width: 35px;
+  font-size: 0.9rem;
+  color: var(--text);
+  text-align: right;
+}
+
+/* ==============================
+   FADE-IN ANIMATION
+   ============================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==============================
+   DISCORD SERVER LIST
+   ============================== */
+
+.discord-server-list {
+  position: fixed;
+  top: 20%;
+  left: 0; /* magsisimula sa labas ng screen */
+  transform: translate(-120%, -70%); /* nakatago */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  background: #202225;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.discord-server-list.active {
+  transform: translate(0, -70%); /* papasok */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.server-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: #2f3136;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-radius 0.3s ease, background 0.3s ease;
+}
+
+.server-icon img {
+  width: 24px;
+  filter: grayscale(100%) brightness(75%);
+  transition: filter 0.3s ease;
+}
+
+.server-icon:hover {
+  border-radius: 20%;
+  background: var(--accent);
+}
+
+.server-icon:hover img {
+  filter: none;
+}
+
+/* ==============================
+   DISCORD TOAST
+   ============================== */
+.discord-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  cursor: pointer;
+  z-index: 9999;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.discord-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.discord-toast.hidden {
+  display: none;
+}
+
+.discord-toast i {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+#toast-close {
+  margin-left: auto;
+  padding: 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+#toast-close:hover,
+#toast-close:focus {
+  color: var(--accent);
+  outline: none;
+}
+
+.discord-toast:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 500px) {
+  .discord-toast {
+    left: 15px;
+    right: 15px;
+    bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  #toast-close {
+    font-size: 16px;
+  }
+}
+
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  padding: 6px 12px;     /* mas maliit na spacing */
+  background: transparent; 
+  font-size: 12px;       /* maliit na text */
+  color: #666;           /* subtle gray, parang GitHub */
+}
+
+/* Toggle Switch Base */
+.discord-switch {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  z-index: 1100;
+}
+
+.discord-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #555;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 5px;
+}
+
+.slider i {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* ON state */
+.discord-switch input:checked + .slider {
+  background-color: var(--accent);
+  justify-content: flex-end;
+}
+
+.discord-switch input:checked + .slider i {
+  color: #fff;
+  transform: rotate(360deg);
+}
+
+/* Server list hidden by default */
+.discord-server-list {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-60px);
+  transition: all 0.4s ease;
+}
+
+/* Server list visible when toggle ON */
+.discord-server-list.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+    
+.top-right-text {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  color: #bbb;
+  background: rgba(35, 39, 42, 0.95);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1200;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.top-right-text.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.top-right-text a {
+  text-decoration: none;
+  color: #bbb;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-right-text a:hover {
+  color: #5865f2; /* Discord blurple */
+}
+
+.top-right-text i.fab.fa-discord {
+  font-size: 16px;
+}
+
+.skill {
+  position: relative; /* Para ma-position ang badge sa loob */
+}
